@@ -2,9 +2,9 @@ require("dotenv").config();
 
 const express = require("express");
 const { Mongoose } = require("mongoose");
-const routes = require('./routes/routes')
-
-
+const investorRoutes = require('./routes/InvestorRoutes')
+const enterprenuerRoutes = require("./routes/enterprenuerRoutes")
+const userRoutes = require("./routes/user")
 
 const app = express();
 
@@ -20,8 +20,14 @@ mongoose.connect(process.env.MONGO_URL)
         console.log("Connected to mongoDB")
     })
 
+
+
+
 // Universal Server Routing
-app.use('/api/investors/', routes)
+app.use('/api/investors/', investorRoutes)
+app.use('/api/enterprenuers/', enterprenuerRoutes)
+app.use('/api/user', userRoutes)
+
 
 
 // Setting up server action on PORT values
